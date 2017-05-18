@@ -10,7 +10,8 @@
   "scripts": {
     "build": "tsc",
     "lint": "tslint src/**/*.ts test/**/*.ts",
-    "test": "node node_modules/mocha/bin/mocha --recursive"
+    "test": "node node_modules/mocha/bin/mocha --recursive",
+    "deploy": "npm run build && zapier push"
   },
   "engines": {
     "node": ">=4.3.0",

@@ -1,4 +1,5 @@
 import { version as platformVersion } from 'zapier-platform-core';
+import triggers from './triggers';
 
 const { version } = require('../package.json'); // tslint:disable-line no-var-requires
 
@@ -21,8 +22,7 @@ const App = {
   },
 
   // If you want your trigger to show up, you better include it here!
-  triggers: {
-  },
+  triggers: triggers.reduce((acc, t) => ({ ...acc, [t.key]: t }), {}),
 
   // If you want your searches to show up, you better include it here!
   searches: {
