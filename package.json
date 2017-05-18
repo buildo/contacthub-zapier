@@ -6,7 +6,7 @@
   "homepage": "...",
   "author": "Francesco Cioria <francesco@buildo.io>",
   "license": "BSD-3-Clause",
-  "main": "lib",
+  "main": "index.js",
   "scripts": {
     "build": "tsc",
     "lint": "tslint src/**/*.ts test/**/*.ts",
