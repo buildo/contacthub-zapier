@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "outDir": "lib",
+    "removeComments": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "suppressImplicitAnyIndexErrors": false
+  },
+  "include": [
+    "src/**/*",
+    "typings"
+  ]
+}
