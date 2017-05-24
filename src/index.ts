@@ -1,14 +1,17 @@
 import { version as platformVersion } from 'zapier-platform-core';
+import authentication from './authentication';
 import triggers from './triggers';
 
 const { version } = require('../package.json'); // tslint:disable-line no-var-requires
 
 // We can roll up all our behaviors in an App.
-const App = {
+const App: App = {
   // This is just shorthand to reference the installed dependencies you have. Zapier will
   // need to know these before we can upload
   version,
   platformVersion,
+
+  authentication,
 
   // beforeRequest & afterResponse are optional hooks into the provided HTTP client
   beforeRequest: [

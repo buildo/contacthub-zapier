@@ -29,7 +29,7 @@ const unsubscribeHook = (z: any, bundle: any) => {
   // You can build requests and our client will helpfully inject all the variables
   // you need to complete. You can also register middleware to control this.
   const options = {
-    url: `http://57b20fb546b57d1100a3c405.mockapi.io/api/hooks/${hookId}`,
+    url: 'https://api.contactlab.it/hub/v1/workspaces/$WORKSPACE_ID/customers?nodeId=$NODE_ID',
     method: 'DELETE',
   };
 
