@@ -15,6 +15,16 @@ const addTokenAndWorkspaceId = (request, z, bundle) => {
   };
 };
 
+const checkForErrors = (response, z) => {
+  if (response.status === 401) {
+    throw new Error('You are not authorized to access ContactHub API. Please ensure your "token", "workspace_id" and "node_id" are all valid.');
+  } else if (response.status >= 400) {
+    throw new z.errors.HaltedError(`${response.status}: ${response.json.message}`);
+  }
+
+  return response;
+};
+
 // We can roll up all our behaviors in an App.
 const App = {
   // This is just shorthand to reference the installed dependencies you have. Zapier will
@@ -30,15 +40,7 @@ const App = {
   ],
 
   afterResponse: [
-    (response) => {
-      if (response.status === 401) {
-        throw new Error('You are not authorized to access ContactHub API. Please ensure your "token", "workspace_id" and "node_id" are all valid.');
-      } else if (response.status >= 400) {
-        throw new Error(`${response.status}: ${response.json.message}`);
-      }
-
-      return response;
-    }
+    checkForErrors
   ],
 
   // If you want to define optional resources to simplify creation of triggers, searches, creates - do that here!

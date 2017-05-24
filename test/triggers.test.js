@@ -21,10 +21,7 @@ describe('My App', () => {
     }
 
     appTester(App.authentication.test.url, bundle)
-      .then((res) => {
-        expect(res.status).toBe(200);
-        resolve();
-      })
+      .then(resolve)
       .catch(reject);
   }));
 

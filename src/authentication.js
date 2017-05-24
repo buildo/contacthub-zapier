@@ -1,7 +1,9 @@
+import newCustomer from './triggers/newCustomer';
+
 export default {
   type: 'custom',
   test: {
-    url: (z, { authData: { nodeId } }) => z.request({ url: 'customers', params: { nodeId } })
+    url: newCustomer.operation.perform
   },
   fields: [
     { key: 'token', type: 'string', required: true, helpText: 'Your token.' },
