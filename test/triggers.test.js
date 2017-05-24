@@ -20,7 +20,7 @@ describe('My App', () => {
       reject(e);
     }
 
-    appTester(App.authentication.test.url, bundle)
+    appTester(App.authentication.test, bundle)
       .then(resolve)
       .catch(reject);
   }));
