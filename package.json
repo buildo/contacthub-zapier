@@ -14,7 +14,7 @@
     "lint": "scriptoni lint src",
     "test": "jest",
     "clean-install": "rm -rf node_modules && npm i",
-    "deploy": "npm run clean-install && npm run build && zapier test && zapier push"
+    "deploy": "npm run build && zapier test && npm version patch && zapier push"
   },
   "engines": {
     "node": "4.x",
