@@ -8,14 +8,16 @@
   "license": "BSD-3-Clause",
   "main": "index.js",
   "scripts": {
-    "build": "babel src -d lib",
+    "validate-engines": "check-node-version --node 4.3.2 --npm 3",
+    "build": "npm run validate-engines && babel src -d lib",
     "watch": "npm run build -- --watch",
     "lint": "scriptoni lint src",
     "test": "jest",
-    "deploy": "npm run build && zapier push"
+    "clean-install": "rm -rf node_modules && npm i",
+    "deploy": "npm run clean-install && npm run build && zapier test && zapier push"
   },
   "engines": {
-    "node": ">=4.3.0",
+    "node": "4.x",
     "npm": ">=3.0.0"
   },
   "dependencies": {
@@ -24,7 +26,9 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-buildo": "^0.1.1",
+    "check-node-version": "^2.1.0",
     "jest": "^20.0.4",
-    "scriptoni": "^0.5.4"
+    "scriptoni": "^0.5.4",
+    "zapier-platform-cli": "^1.0.10"
   }
 }
