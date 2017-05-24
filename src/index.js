@@ -4,8 +4,19 @@ import triggers from './triggers';
 
 const { version } = require('../package.json'); // tslint:disable-line no-var-requires
 
+const addTokenAndWorkspaceId = (request, z, bundle) => {
+  return {
+    ...request,
+    url: `https://api.contactlab.it/hub/v1/workspaces/${bundle.authData.workspaceId}/${request.url}`,
+    headers: {
+      ...request.headers,
+      Authorization: `Bearer ${bundle.authData.token}`
+    }
+  };
+};
+
 // We can roll up all our behaviors in an App.
-const App: App = {
+const App = {
   // This is just shorthand to reference the installed dependencies you have. Zapier will
   // need to know these before we can upload
   version,
@@ -15,6 +26,7 @@ const App: App = {
 
   // beforeRequest & afterResponse are optional hooks into the provided HTTP client
   beforeRequest: [
+    addTokenAndWorkspaceId
   ],
 
   afterResponse: [

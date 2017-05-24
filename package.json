@@ -8,9 +8,10 @@
   "license": "BSD-3-Clause",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "lint": "tslint src/**/*.ts test/**/*.ts",
-    "test": "node node_modules/mocha/bin/mocha --recursive",
+    "build": "babel src -d lib",
+    "watch": "npm run build -- --watch",
+    "lint": "scriptoni lint src",
+    "test": "jest",
     "deploy": "npm run build && zapier push"
   },
   "engines": {
@@ -21,11 +22,9 @@
     "zapier-platform-core": "1.0.10"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.64",
-    "@types/node": "^7.0.18",
-    "mocha": "3.2.0",
-    "should": "11.2.1",
-    "tslint": "^5.2.0",
-    "typescript": "^2.3.2"
+    "babel-cli": "^6.24.1",
+    "babel-preset-buildo": "^0.1.1",
+    "jest": "^20.0.4",
+    "scriptoni": "^0.5.4"
   }
 }
