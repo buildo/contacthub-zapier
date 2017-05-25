@@ -43,7 +43,7 @@ type Trigger = {
   }
 };
 
-type TriggerFunction = (z: Z, bundle: Bundle) => Promise<any>;
+type TriggerFunction = (z: Z, bundle: Bundle) => Promise<Array<AnyObject>>;
 
 type Bundle = {
   authData: {
