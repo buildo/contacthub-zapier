@@ -10,15 +10,19 @@ const { token, workspaceId, nodeId } = (fs.existsSync(path.resolve(__dirname, '.
 
 const appTester: (a: any, bundle: Bundle) => Promise<Array<AnyObject>> = zapier.createAppTester(App);
 
-const authData = { token, workspaceId, nodeId };
+const authData = {
+  token: String(token),
+  workspaceId: String(workspaceId),
+  nodeId: String(nodeId)
+};
 
-describe('My App', () => {
+const bundle = {
+  authData
+};
+
+describe('ContactHub App', () => {
 
   it('should authenticate', () => new Promise((resolve, reject) => {
-    const bundle = {
-      authData
-    };
-
     try {
       expect(Object.keys(bundle.authData).length).toBe(App.authentication.fields.length);
       App.authentication.fields.forEach(f => expect(bundle.authData.hasOwnProperty(f.key)));
@@ -32,10 +36,6 @@ describe('My App', () => {
   }));
 
   it('should load customers', () => new Promise((resolve, reject) => {
-    const bundle = {
-      authData
-    };
-
     appTester(App.triggers.new_customer.operation.perform, bundle)
       .then((results) => {
         expect(results.length).toBeGreaterThan(1);

@@ -21,6 +21,7 @@
     "npm": ">=3.0.0"
   },
   "jest": {
+    "testEnvironment": "node",
     "moduleFileExtensions": [
       "ts",
       "js"
