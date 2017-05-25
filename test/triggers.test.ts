@@ -1,8 +1,12 @@
 import * as zapier from 'zapier-platform-core';
 import App from '../src/index';
 import * as Promise from 'bluebird';
+import * as fs from 'fs';
+import * as path from 'path';
 
-const { token, workspaceId, nodeId } = require('../config.json'); // tslint:disable-line no-var-requires
+const { token, workspaceId, nodeId } = (fs.existsSync(path.resolve(__dirname, '../config.json'))) ?
+  require('../config.json') : // tslint:disable-line no-var-requires
+  { token: process.env.TOKEN, workspaceId: process.env.WORKSPACE_ID, nodeId: process.env.NODE_ID };
 
 const appTester: (a: any, bundle: Bundle) => Promise<Array<AnyObject>> = zapier.createAppTester(App);
 
