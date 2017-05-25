@@ -4,7 +4,7 @@ import triggers from './triggers';
 
 const { version } = require('../package.json'); // tslint:disable-line no-var-requires
 
-const addTokenAndWorkspaceId = (request, z, bundle) => {
+const addTokenAndWorkspaceId: BeforeRequest = (request, z, bundle) => {
   return {
     ...request,
     url: `https://api.contactlab.it/hub/v1/workspaces/${bundle.authData.workspaceId}/${request.url}`,
@@ -15,7 +15,7 @@ const addTokenAndWorkspaceId = (request, z, bundle) => {
   };
 };
 
-const checkForErrors = (response, z) => {
+const checkForErrors: AfterResponse = (response, z) => {
   if (response.status === 401) {
     throw new Error('You are not authorized to access ContactHub API. Please ensure your "token", "workspace_id" and "node_id" are all valid.');
   } else if (response.status >= 400) {
@@ -26,7 +26,7 @@ const checkForErrors = (response, z) => {
 };
 
 // We can roll up all our behaviors in an App.
-const App = {
+const App: App = {
   // This is just shorthand to reference the installed dependencies you have. Zapier will
   // need to know these before we can upload
   version,

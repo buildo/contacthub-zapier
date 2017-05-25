@@ -1,8 +1,10 @@
-const zapier = require('zapier-platform-core');
-const { token, workspaceId, nodeId } = require('../config.json');
+import * as zapier from 'zapier-platform-core';
+import App from '../src/index';
+import * as Promise from 'bluebird';
 
-const App = require('../index');
-const appTester = zapier.createAppTester(App);
+const { token, workspaceId, nodeId } = require('../config.json'); // tslint:disable-line no-var-requires
+
+const appTester: (a: any, bundle: Bundle) => Promise<Array<AnyObject>> = zapier.createAppTester(App);
 
 const authData = { token, workspaceId, nodeId };
 

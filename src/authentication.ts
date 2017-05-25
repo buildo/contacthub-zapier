@@ -1,6 +1,6 @@
 import newCustomer from './triggers/newCustomer';
 
-export default {
+const authentication: Authentication = {
   type: 'custom',
   test: newCustomer.operation.perform,
   fields: [
@@ -9,3 +9,5 @@ export default {
     { key: 'nodeId', type: 'string', required: true, helpText: 'Your node Id.' }
   ]
 };
+
+export default authentication;

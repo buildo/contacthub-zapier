@@ -1,9 +1,8 @@
-const listCustomers = (z, { authData: { nodeId } }) => {
+const listCustomers: TriggerFunction = (z, { authData: { nodeId } }) => {
   return z.request({ url: 'customers', params: { nodeId, sort: 'registeredAt,desc' } }).then(r => r.json.elements);
 };
 
-export default {
-  // schema for triggers: https://github.com/zapier/zapier-platform-schema/blob/master/docs/build/schema.md#triggerschema
+const newCustomer: Trigger = {
   key: 'new_customer',
   noun: 'Customer',
   display: {
@@ -15,3 +14,5 @@ export default {
     perform: listCustomers
   }
 };
+
+export default newCustomer;

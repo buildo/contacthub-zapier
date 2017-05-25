@@ -9,9 +9,9 @@
   "main": "index.js",
   "scripts": {
     "validate-engines": "check-node-version --node 4.3.2 --npm 3",
-    "build": "npm run validate-engines && babel src -d lib",
+    "build": "npm run validate-engines && tsc",
     "watch": "npm run build -- --watch",
-    "lint": "scriptoni lint src",
+    "lint": "tslint src/**/*.ts test/**/*.ts",
     "test": "jest",
     "clean-install": "rm -rf node_modules && npm i",
     "deploy": "npm run build && zapier test && zapier push"
@@ -20,15 +20,31 @@
     "node": "4.x",
     "npm": ">=3.0.0"
   },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
+    },
+    "testMatch": [
+      "**/test/*.test.(ts|js)"
+    ]
+  },
   "dependencies": {
     "zapier-platform-core": "1.0.10"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-preset-buildo": "^0.1.1",
+    "@types/bluebird": "^3.5.4",
+    "@types/jest": "^19.2.3",
+    "@types/lodash": "^4.14.64",
+    "@types/node": "^7.0.18",
     "check-node-version": "^2.1.0",
     "jest": "^20.0.4",
-    "scriptoni": "^0.5.4",
+    "tslint": "^5.2.0",
+    "tslint-eslint-rules": "^4.1.0",
+    "typescript": "^2.3.2",
     "zapier-platform-cli": "^1.0.10"
   }
 }
