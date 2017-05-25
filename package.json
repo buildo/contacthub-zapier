@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "validate-engines": "check-node-version --node 4.3.2 --npm 3",
-    "build": "npm run validate-engines && tsc",
+    "build": "npm run validate-engines && rm -rf lib && tsc",
     "watch": "npm run build -- --watch",
     "lint": "tslint src/**/*.ts test/**/*.ts",
     "test": "jest",
