@@ -4,8 +4,10 @@ import * as Promise from 'bluebird';
 import * as fs from 'fs';
 import * as path from 'path';
 
-const { token, workspaceId, nodeId } = (fs.existsSync(path.resolve(__dirname, '../config.json'))) ?
-  require('../config.json') : // tslint:disable-line no-var-requires
+const = configJsonPath = path.resolve(__dirname, '../config.json');
+
+const { token, workspaceId, nodeId } = (fs.existsSync(configJsonPath)) ?
+  require(configJsonPath) : // tslint:disable-line no-var-requires
   { token: process.env.TOKEN, workspaceId: process.env.WORKSPACE_ID, nodeId: process.env.NODE_ID };
 
 const appTester: (a: any, bundle: Bundle) => Promise<Array<AnyObject>> = zapier.createAppTester(App);
