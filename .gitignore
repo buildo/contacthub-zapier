@@ -2,3 +2,4 @@ lib
 node_modules
 *.log
 .environment
+config.json

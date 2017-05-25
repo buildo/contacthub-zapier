@@ -1,6 +1,6 @@
 {
   "name": "contacthub-zapier",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "An app for integrating Contacthub with the Zapier platform.",
   "repository": "...",
   "homepage": "...",
@@ -8,24 +8,43 @@
   "license": "BSD-3-Clause",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "validate-engines": "check-node-version --node 4.3.2 --npm 3",
+    "build": "npm run validate-engines && tsc",
+    "watch": "npm run build -- --watch",
     "lint": "tslint src/**/*.ts test/**/*.ts",
-    "test": "node node_modules/mocha/bin/mocha --recursive",
-    "deploy": "npm run build && zapier push"
+    "test": "jest",
+    "clean-install": "rm -rf node_modules && npm i",
+    "deploy": "npm run build && zapier test && zapier push"
   },
   "engines": {
-    "node": ">=4.3.0",
+    "node": "4.x",
     "npm": ">=3.0.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
+    },
+    "testMatch": [
+      "**/test/*.test.(ts|js)"
+    ]
   },
   "dependencies": {
     "zapier-platform-core": "1.0.10"
   },
   "devDependencies": {
+    "@types/bluebird": "^3.5.4",
+    "@types/jest": "^19.2.3",
     "@types/lodash": "^4.14.64",
     "@types/node": "^7.0.18",
-    "mocha": "3.2.0",
-    "should": "11.2.1",
+    "check-node-version": "^2.1.0",
+    "jest": "^20.0.4",
     "tslint": "^5.2.0",
-    "typescript": "^2.3.2"
+    "tslint-eslint-rules": "^4.1.0",
+    "typescript": "^2.3.2",
+    "zapier-platform-cli": "^1.0.10"
   }
 }

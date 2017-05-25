@@ -1,5 +1,5 @@
-import fakeTrigger from './fakeTrigger';
+import newCustomer from './newCustomer';
 
 export default [
-  fakeTrigger
+  newCustomer
 ];
