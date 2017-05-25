@@ -33,6 +33,7 @@
     ]
   },
   "dependencies": {
+    "contacthub-sdk-nodejs": "^1.0.0",
     "zapier-platform-core": "1.0.10"
   },
   "devDependencies": {
