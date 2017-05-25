@@ -2,8 +2,8 @@ type App = {
   version: any, // (string)
   platformVersion: any, // (string),
   authentication: Authentication,
-  beforeRequest: Array<BeforeRequest>,
-  afterResponse: Array<AfterResponse>,
+  beforeRequest?: Array<BeforeRequest>,
+  afterResponse?: Array<AfterResponse>,
   resources: AnyObject,
   triggers: { [key: string]: Trigger },
   searches: AnyObject,

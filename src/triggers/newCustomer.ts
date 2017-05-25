@@ -1,5 +1,8 @@
-const listCustomers: TriggerFunction = (z, { authData: { nodeId } }) => {
-  return z.request({ url: 'customers', params: { nodeId, sort: 'registeredAt,desc' } }).then(r => r.json.elements);
+import * as ContactHub from 'contacthub-sdk-nodejs';
+
+const listCustomers: TriggerFunction = (z, { authData }) => {
+  const ch = new ContactHub(authData);
+  return ch.getCustomers({ sort: 'registeredAt', direction: 'desc' }).then(r => r.elements);
 };
 
 const newCustomer: Trigger = {
